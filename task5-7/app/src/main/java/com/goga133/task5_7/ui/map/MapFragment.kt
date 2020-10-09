@@ -4,28 +4,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
+import androidx.fragment.app.findFragment
 import androidx.lifecycle.ViewModelProviders
 import com.goga133.task5_7.R
+import com.google.android.gms.maps.SupportMapFragment
+
 
 class MapFragment : Fragment() {
 
     private lateinit var mapViewModel: MapViewModel
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         mapViewModel =
-                ViewModelProviders.of(this).get(MapViewModel::class.java)
+            ViewModelProviders.of(this).get(MapViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_map, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        mapViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
+
         return root
     }
 }
