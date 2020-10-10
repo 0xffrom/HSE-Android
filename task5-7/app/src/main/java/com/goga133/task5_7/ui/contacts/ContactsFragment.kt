@@ -62,8 +62,6 @@ class ContactsFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun importContacts() {
-        button_import.visibility = View.GONE;
-
         val readContactsPermission = ContextCompat.checkSelfPermission(
             requireContext(), Manifest.permission.READ_CONTACTS
         )
@@ -73,8 +71,11 @@ class ContactsFragment : Fragment() {
                 PERMISSION_GRANTED
             );
         }
+        else{
+            button_import.visibility = View.GONE
+            contactsViewModel.loadDataContacts(requireActivity());
+        }
 
-        contactsViewModel.loadDataContacts(requireActivity());
     }
 
 
